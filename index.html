@@ -1,23 +1,782 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <!-- JSON-LD 구조화 데이터 정보 제공 (NAVER AI 탭 및 AI 에이전트 수집 최적화) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://legal.reliabledone.com/individual-rehabilitation-2026#webpage",
+          "url": "https://legal.reliabledone.com/individual-rehabilitation-2026",
+          "name": "2026년 개인회생 신청 절차 자격 조건 및 최저생계비 변제금 계산기 상세 안내서",
+          "description": "2026년 변경된 기준 중위소득 60퍼센트 기준 가구원수별 최저생계비와 추가 생계비 산정 기준을 바탕으로 개인회생 자격 조건, 절차, 비용을 상세히 안내하고 실시간 계산기를 제공합니다."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "2026년 개인회생 최저생계비 기준은 가구원수별로 어떻게 되나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "2026년 개인회생 최저생계비는 기준 중위소득의 60퍼센트 수준으로 결정되었습니다. 1인 가구는 1,538,543원, 2인 가구는 2,520,105원, 3인 가구는 3,211,916원, 4인 가구는 3,906,688원, 5인 가구는 4,534,031원입니다. 동일 소득 대비 매월 납부하는 변제금이 기존보다 크게 줄어드는 효과가 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "개인회생 신청 시 금지명령은 보통 언제 나오나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "개인회생 신청서 접수일로부터 보통 3일에서 7일 이내에 법원의 금지명령 또는 중지명령이 내려집니다. 금지명령이 송달되면 채권자들의 독촉, 압류, 추심 행위가 법적으로 전면 중단되어 채무자는 심리적 안정을 찾고 절차를 준비할 수 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "개인회생과 신용회복위원회 워크아웃의 가장 큰 차이점은 무엇인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "개인회생은 법원이 강제력을 가지고 원금을 최대 90퍼센트까지 감면해 주며 사채나 보증채무를 포함한 모든 채무가 대상이 됩니다. 반면 신용회복위원회 워크아웃은 협약된 금융기관 채무만 조정 가능하며 원금 감면 비율이 회생에 비해 낮지만 신청 절차가 상대적으로 간소하고 비용이 저렴하다는 장단점의 차이가 있습니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #fbfaf8;
+            --card-bg: #ffffff;
+            --primary-color: #5a637c;
+            --primary-light: #eceef4;
+            --secondary-color: #d98a6c;
+            --secondary-light: #f7ede8;
+            --text-main: #2b2b2b;
+            --text-muted: #666666;
+            --border-color: #e8e4df;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            --border-radius: 16px;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+        }
+
+        header {
+            background: var(--primary-light);
+            padding: 40px;
+            margin: -40px -40px 40px -40px;
+            border-bottom: 4px solid var(--primary-color);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 0 0 15px 0;
+        }
+
+        .meta-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        h2 {
+            margin-top: 2.5rem;
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            font-weight: 700;
+        }
+
+        h3 {
+            margin-top: 1.8rem;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            font-weight: 700;
+        }
+
+        p, li {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: var(--secondary-light);
+            padding: 25px;
+            border-left: 6px solid var(--secondary-color);
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            padding: 15px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .cta-button {
+            display: block;
+            text-align: center;
+            padding: 18px 30px;
+            background: var(--secondary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 35px 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(217, 138, 108, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #c47558;
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        thead th {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #faf9f7;
+        }
+
+        tbody tr:hover {
+            background-color: #f1eff4;
+        }
+
+        .interactive-section {
+            background: var(--primary-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .interactive-section h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .input-group input[type="text"], 
+        .input-group input[type="number"], 
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            background: #fff;
+        }
+
+        .input-group input:focus, 
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(90, 99, 124, 0.15);
+        }
+
+        .calc-result-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .calc-result-box p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        .calc-result-box span {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .chart-label {
+            width: 120px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            background: #eceef4;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 24px;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.5s ease-out;
+        }
+
+        .chart-bar.secondary {
+            background: var(--secondary-color);
+        }
+
+        .chart-value {
+            width: 110px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .external-link {
+            display: inline-block;
+            margin: 8px 0;
+            color: #4a6fa5;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .external-link:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .reference-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            header {
+                padding: 25px;
+                margin: -20px -20px 20px -20px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .chart-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .chart-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            .chart-value {
+                width: 100%;
+                text-align: left;
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>2026년 개인회생 신청 가이드 및 변제금 최저생계비 계산기 상세 안내서</h1>
+            <p class="meta-description">2026년 최신 생활보장 기준을 반영하여 개인회생 최저생계비 표준 지표와 신청 자격 요건, 실제 예상 법원 지출 비용 산정까지 꼼꼼하게 비교 분석하여 합리적인 대안을 제시합니다.</p>
+        </header>
+
+        <div class="nav-links">
+            <a href="#intro">1. 제도적 변화와 의의</a>
+            <a href="#standard-2026">2. 2026년 최저생계비 기준</a>
+            <a href="#eligibility">3. 신청 자격 조건 자가진단</a>
+            <a href="#procedure">4. 단계별 진행 절차</a>
+            <a href="#comparisons">5. 유관 채무조정제도 비교</a>
+            <a href="#regional-strategy">6. 전국 법원별 심사 경향</a>
+            <a href="#calculator-section">7. 실시간 예상 변제금 계산기</a>
+            <a href="#cost-estimator-section">8. 예상 진행 비용 계산기</a>
+            <a href="#reference">9. 신뢰할 수 있는 공식 참고 자료</a>
+        </div>
+
+        <h2 id="intro">1. 2026년 개인회생 제도의 거시적 변화와 의의</h2>
+        <p>장기화되는 고금리 기조와 물가 상승 흐름 속에서 재정적 한계에 부딪힌 가계가 늘어남에 따라 법원의 채무조정 제도를 통한 자립 방안이 중대한 화두로 떠올랐습니다. 2026년 개인회생 제도는 사회적 경제 위기를 경감하고 채무자의 실질적 재기를 도모하기 위해 전향적인 방향으로 운영되고 있습니다. 특히 보건복지부의 2026년 기준 중위소득 인상에 따라 개인회생 가구원수별 최저생계비가 역대급 폭으로 상향 조정되면서 소득에서 생계비를 차감한 나머지 금액인 월 변제금 부담이 이전 연도 대비 대폭 낮아지는 긍정적인 제도적 혜택을 누릴 수 있게 되었습니다.</p>
+        
+        <p>과거에는 개인회생 정보를 얻기 위해 주로 포털 사이트인 네이버나 구글을 검색하거나 유튜브 동영상을 시청하는 것이 일반적이었습니다. 하지만 최근에는 디시, 보배드림, 펨코, 에펨코리아와 같은 국내 주요 온라인 커뮤니티에서 실제 법률 대리인을 선임해 본인 채무를 조정한 내돈내산 후기나 진행 과정을 직접 비교하는 실시간 소통 글들을 찾아보는 사례가 대폭 증가했습니다. 아울러 트위터, 인스타그램, 페이스북, 카카오톡 오픈채팅방 등을 통해 최신 법원 보정 명령 흐름이나 인가 성공 사례를 빠르게 수집하는 흐름이 대세로 굳어졌습니다. 심지어 대출 및 자산 관리 금융 플랫폼인 토스 앱 내에서 제공되는 신용 점수 조회 및 대안 금융 연계 서비스를 활용하거나, 최신 대형 언어 모델 기술이 접목된 챗지피티 및 제미나이와 같은 인공지능 탑재 AI 비서 프로그램을 활용하여 본인의 예상 채무 탕감 비율을 사전에 꼼꼼히 진단하고 대안을 모색하는 스마트한 신청인들이 다수 나타나고 있습니다.</p>
+
+        <div class="highlight-box">
+            개인회생 신청을 고민할 때 대다수의 이용자들이 가장 궁금해하는 핵심은 바로 매달 법원에 납부해야 하는 평균 금액이 얼마인지, 그리고 면책까지 수반되는 총체적 예상 비용과 법률 대리 업체의 가격 편차에 대한 정확한 견적 비교입니다. 많은 신청인들이 무료 계산기 앱이나 전문 모바일 어플을 다운로드하여 조건별 시뮬레이션을 수행해 보거나, 전문 도산 법률 사무소를 통한 다이렉트 온라인 상담 사이트를 경유해 컨설팅을 요청하고 있습니다.
+        </div>
+
+        <h2 id="standard-2026">2. 2026년 최저생계비 기준 및 산정 원칙</h2>
+        <p>법원이 인정하는 개인회생 최저생계비는 보건복지부가 매년 고시하는 기준 중위소득의 60퍼센트로 정해집니다. 이 수치보다 소득이 많은 근로자나 영업소득자만이 신청할 수 있으며, 이 기본 생활 비용을 공제한 나머지 금액이 매달 납입하게 되는 가용 소득이자 즉 변제금의 기준점이 됩니다.</p>
+
+        <h3>가구원수별 중위소득 60퍼센트 비교표 (2025년 대비 2026년 변화율)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>가구원수</th>
+                    <th>2025년 최저생계비 (원)</th>
+                    <th>2026년 최저생계비 (원)</th>
+                    <th>전년 대비 월 변제금 절감 효과 (예상액)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1인 가구</td>
+                    <td>1,337,067</td>
+                    <td>1,538,543</td>
+                    <td>월 약 201,476원 절감 (36개월간 총 약 725만원 이득)</td>
+                </tr>
+                <tr>
+                    <td>2인 가구</td>
+                    <td>2,209,145</td>
+                    <td>2,520,105</td>
+                    <td>월 약 310,960원 절감 (36개월간 총 약 1,119만원 이득)</td>
+                </tr>
+                <tr>
+                    <td>3인 가구</td>
+                    <td>2,828,794</td>
+                    <td>3,211,916</td>
+                    <td>월 약 383,122원 절감 (36개월간 총 약 1,379만원 이득)</td>
+                </tr>
+                <tr>
+                    <td>4인 가구</td>
+                    <td>3,437,948</td>
+                    <td>3,906,688</td>
+                    <td>월 약 468,740원 절감 (36개월간 총 약 1,687만원 이득)</td>
+                </tr>
+                <tr>
+                    <td>5인 가구</td>
+                    <td>4,017,441</td>
+                    <td>4,534,031</td>
+                    <td>월 약 516,590원 절감 (36개월간 총 약 1,859만원 이득)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>시각자료: 2025년 vs 2026년 1인 가구 최저생계비 인상 현황</h3>
+        <div class="chart-container">
+            <div class="chart-row">
+                <div class="chart-label">2025년 최저생계비</div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="width: 86.9%;"></div>
+                </div>
+                <div class="chart-value">1,337,067 원</div>
+            </div>
+            <div class="chart-row">
+                <div class="chart-label">2026년 최저생계비</div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar secondary" style="width: 100%;"></div>
+                </div>
+                <div class="chart-value">1,538,543 원</div>
+            </div>
+        </div>
+
+        <p>위 시각 지표에서 직관적으로 파악할 수 있듯이, 2026년 최저생계비 인상은 동일 소득 기준을 전제할 때 채무자가 실질적으로 생활비에 확보할 수 있는 자금이 확대되고 매달 채무 변제에 쏟아야 하는 변제 금액이 낮아짐을 증명합니다. 이는 채무조정 실패 및 중도 폐지 위험을 크게 줄여주는 거시적인 완충 장치로 기능합니다.</p>
+
+        <h3>추가 생계비 인정 한도 및 증빙 요건</h3>
+        <p>법원이 공식 인정하는 기본적인 중위소득 60퍼센트 이외에도, 신청인의 불가피한 사정을 적극 소명하면 추가 생계비를 인정받아 변제 금액을 더욱 하향시킬 수 있습니다. 2026년부터는 생계 안정성 제고를 위해 다음 세 가지 부문에서 법원의 가이드라인이 넓어졌습니다.</p>
+        <ul>
+            <li>추가 주거비: 실제 주택담보대출 이자 및 월세 지출, 전세자금 대출 계약의 이자 발생액이 법원 기준 주거비를 초과하는 경우, 임대차계약서 및 월세 계좌 이체 내역서, 금융거래 확인서 제출을 통해 평균 기준 이상 금액을 추가 공제받을 수 있습니다.</li>
+            <li>추가 교육비: 미성년 자녀의 공교육 비용 및 부득이하게 발생하는 사교육 필요지출은 가구당 평균 자녀 1인 기준 약 20만원 수준까지 소명 가능하며, 특수 교육이 불가피한 장애 아동 등의 경우에는 최대 월 50만원 한도 내외까지 인정을 유도할 수 있습니다.</li>
+            <li>추가 의료비: 지속적인 지병으로 약물 복용이나 주기적 수술, 재활 치료가 필요한 본인 및 부양가족이 있다면, 병원 진단서 및 장기 처방 영수증 소명을 거쳐 한도 상한 없이 합리적인 범위 내에서 추가 의료비를 생활 여건에 맞춤형으로 공제 인정받습니다.</li>
+        </ul>
+
+        <h2 id="eligibility">3. 신청 자격 조건 자가진단 및 핵심 기각 사유</h2>
+        <p>신청을 조속히 진행하기에 앞서, 법원 도산 절차에서 규정하고 있는 최소 요건을 본인이 구비하고 있는지 명확하게 확인하는 선결 과제가 필수적입니다. 무리한 접수는 도리어 서류 미비에 따른 기각 결정을 야기하여 기회비용만을 가중시킬 수 있습니다.</p>
+
+        <div class="interactive-section">
+            <h3>자격 조건 자가 확인 체크리스트</h3>
+            <div class="input-group">
+                <label for="hasIncome">1. 매달 최저생계비를 초과하는 고정적인 수입(급여, 프리랜서, 사업, 농림어업, 일용직 등)이 있습니까?</label>
+                <select id="hasIncome">
+                    <option value="yes">예, 규칙적인 증빙 가능 수입이 있습니다.</option>
+                    <option value="no">아니오, 현재 고정 수입이 전혀 없습니다.</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="debtOverAsset">2. 현재 보유하고 있는 총 자산(부동산, 예금, 자동차, 임차보증금 등)의 가치보다 총 채무 금액이 더 큽니까?</label>
+                <select id="debtOverAsset">
+                    <option value="yes">예, 채무액이 재산 가치보다 확연히 큽니다.</option>
+                    <option value="no">아니오, 재산이 채무보다 더 많습니다.</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="debtLimit">3. 총 채무액이 법적인 상한 금액(무담보 채무 10억 원 이하, 담보부 채무 15억 원 이하) 이내입니까?</label>
+                <select id="debtLimit">
+                    <option value="yes">예, 총 채무 범위 이내에 해당합니다.</option>
+                    <option value="no">아니오, 채무가 기준치를 초과합니다.</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="dischargeHistory">4. 최근 5년 이내에 개인회생이나 개인파산을 통해 면책을 승인받은 사실이 없습니까?</label>
+                <select id="dischargeHistory">
+                    <option value="yes">예, 5년 이내에 면책받은 기록이 없습니다.</option>
+                    <option value="no">아니오, 최근 5년 이내에 면책 이력이 있습니다.</option>
+                </select>
+            </div>
+            <button onclick="checkEligibility()" style="padding: 12px 24px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;">체크리스트 확인하기</button>
+            
+            <div id="eligibilityResult" class="calc-result-box" style="display: none;">
+                <p>자가진단 평가: <span id="eligibilityText">결과 확인 중</span></p>
+            </div>
+        </div>
+
+        <script>
+            function checkEligibility() {
+                const hasIncome = document.getElementById('hasIncome').value;
+                const debtOverAsset = document.getElementById('debtOverAsset').value;
+                const debtLimit = document.getElementById('debtLimit').value;
+                const dischargeHistory = document.getElementById('dischargeHistory').value;
+                const resultBox = document.getElementById('eligibilityResult');
+                const resultText = document.getElementById('eligibilityText');
+                
+                resultBox.style.display = 'block';
+                
+                if (hasIncome === 'yes' && debtOverAsset === 'yes' && debtLimit === 'yes' && dischargeHistory === 'yes') {
+                    resultText.innerHTML = "신청 요건을 충족할 가능성이 긍정적입니다. 구체적인 가치 산정을 위해 전문 대리인과의 상세 분석 상담을 권장합니다.";
+                    resultText.style.color = "green";
+                } else {
+                    resultText.innerHTML = "일부 항목에서 부적합 사유가 검출되었습니다. 특히 지속적인 소득 유무나 재산이 채무를 상회하는 경우 원활한 진행이 어려우니, 대리사무소에 정밀 진단을 문의하시기 바랍니다.";
+                    resultText.style.color = "red";
+                }
+            }
+        </script>
+
+        <h3>주요 기각 사유와 대응 지침</h3>
+        <p>법원이 신청을 기각 처리하는 핵심 원인으로는 신청 요건을 충족하지 못하였을 때를 들 수 있습니다. 채무자가 기한 내에 소명 자료를 보정하여 보정 서류를 성실히 제출하지 않거나, 최근에 과도하게 발생한 융자금에 도박, 비정상적 주식 및 가상화폐 선물의 무리한 자금 운용으로 사행성 투자가 확인되는 경우가 대표적입니다. 이 경우 법원은 변제 기간을 기본 3년에서 최대 5년까지 늘리도록 조건부 인가 지시를 내리거나 기각 결정을 고지할 수 있으므로, 초기 단계부터 성실성 확보 소명서와 함께 합리적 주거 임차 사유 등을 신중히 개진해야 합니다.</p>
+
+        <h2 id="procedure">4. 단계별 진행 절차와 핵심 준비 서류</h2>
+        <p>도산 제도는 접수 시점부터 면책에 이르기까지 상당한 시일과 사법 관청의 세밀한 심사를 동반하므로 각 단계의 행동 규칙을 미리 숙지해야 불안감을 예방할 수 있습니다.</p>
+
+        <ol>
+            <li>
+                <strong>신청서 및 재산 내역서 제출:</strong> 
+                본인의 모든 금융 채무와 세금, 채무 발생 경위와 부양가족을 산정한 소득 내역서를 주소지 관할 회생법원에 일제히 접수합니다.
+            </li>
+            <li>
+                <strong>금지명령 및 중지명령 결정:</strong> 
+                보통 접수 후 3일에서 7일 안으로 가압류, 독촉 전화, 문자 발송 및 통장 압류 등을 전면 중단시키는 금지명령이 도달합니다. 채무자는 이때부터 비로소 독촉에서 해방되어 안정된 근로 환경에서 남은 단계를 수월하게 준비할 수 있습니다.
+            </li>
+            <li>
+                <strong>회생위원 배정 및 보정권고 이행:</strong> 
+                법원 선임 회생위원이 계좌 거래 내역서, 신용카드 영수증, 최근 주식 거래 현황을 면밀하게 교차 점검하며 소득 누락이나 자산 편법 은닉이 없는지 규명하는 보정 지시를 발송합니다. 대리인을 통해 기한 내에 논리적인 답변을 회신하는 것이 관건입니다.
+            </li>
+            <li>
+                <strong>개시 결정 및 채권자 이의 신청 기간:</strong> 
+                소명이 성공적으로 마무리되면 개시 결정이 내려지며, 신청인은 법원 가상 계좌번호를 부여받아 매월 책정된 가용 변제금을 최초로 적립하기 시작합니다.
+            </li>
+            <li>
+                <strong>채권자 집회 참석:</strong> 
+                지정된 기일에 직접 담당 법원에 직접 출석하여 채권 금융기관 측에 최종 변제안을 개진하는 요식 단계를 밟습니다. 채무자 본인의 필참 사항입니다.
+            </li>
+            <li>
+                <strong>인가 결정 및 면책 확정:</strong> 
+                집회 기일이 완료되고 별다른 소송 쟁점이 없으면 인가 결정이 공시되며, 이는 공식적인 신용 정보의 해제를 동반합니다. 36개월에서 최대 60개월에 이르는 정해진 횟수의 이행 기간을 어김없이 준수하면 마침내 남은 원금과 이자가 모두 탕감 승인되는 최종 면책결정 처분을 완결 짓게 됩니다.
+            </li>
+        </ol>
+
+        <h2 id="comparisons">5. 유관 채무조정제도와의 장단점 및 차이점 다차원 비교</h2>
+        <p>금융에 어려움을 겪는 이들이 접근 가능한 제도적 안전망은 사법기관의 공적 구제책과 신용회복위원회의 사적 채무 조정 프로그램으로 구별됩니다. 제도의 종류마다 면책 한도와 혜택의 실효성에서 분명한 차이점이 존재하므로 면밀한 지표의 교차가 전제되어야 합니다.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>평가 항목</th>
+                    <th>개인회생 (법원)</th>
+                    <th>개인파산 (법원)</th>
+                    <th>신용회복위원회 워크아웃 (사적 조정)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>원금 감면 폭</td>
+                    <td>최대 90퍼센트까지 폭넓은 감면율 제공</td>
+                    <td>전액 (100퍼센트 무조건 면책 청산)</td>
+                    <td>상황별 차등 감면 및 미상환액 소액 감면</td>
+                </tr>
+                <tr>
+                    <td>상환 유예 기간</td>
+                    <td>3년 내외 (특별 승인 시 최대 5년)</td>
+                    <td>상환 의무 자체가 영구 소멸</td>
+                    <td>최장 8년에서 10년의 장기 분할 납입</td>
+                </tr>
+                <tr>
+                    <td>조정 가능 채무 대상</td>
+                    <td>세금, 사채, 일수, 보증, 일반 금융 등 전체 채무</td>
+                    <td>회생과 동일하게 거의 모든 채무 포괄</td>
+                    <td>협약에 서명한 특정 금융사 대출 채무로 국한</td>
+                </tr>
+                <tr>
+                    <td>소득 유지 요건</td>
+                    <td>지속적인 가용 소득 필수 입증</td>
+                    <td>무소득자 혹은 최저생계비 이하 가구만 가능</td>
+                    <td>최소 생계 기준을 맞춘 정기 소득 필요</td>
+                </tr>
+                <tr>
+                    <td>주요 장점</td>
+                    <td>공인 자격직 유지 가능, 자산 소유 방어</td>
+                    <td>신속하게 과거 빚의 사슬 완전 청산</td>
+                    <td>신청비 5만원 내외로 비용이 가장 저렴함</td>
+                </tr>
+                <tr>
+                    <td>실무상 단점</td>
+                    <td>서류 준비 복잡성, 진행 대리인 보수 발생</td>
+                    <td>파산자 낙인으로 취업 및 금융 거래 시 지장 우려</td>
+                    <td>사채 누락 위험, 고율 채무의 감면 제한성</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>채무 상태가 매우 엄중하고 고금리 사채나 보증 채무까지 다수 결부된 상황이라면 법원의 인가 결정력이 작용하는 제도적 이점이 확연히 우세합니다. 반면, 주 채무가 1금융권 대환 대출 위주이고 일시적인 단기 연체 단계에 그친 사안이라면 신용회복위원회의 연체 전 채무조정을 선택하여 가입 절차를 직접 밟는 요령이 보다 정교한 결정일 수 있습니다.</p>
+
+        <h2 id="regional-strategy">6. 전국 법원별 심사 경향 및 연령대별 특성 분석</h2>
+        <p>전국의 개별 지방법원은 서류를 대하는 보정 명령 수위와 청산가치 인정 기준에 미묘한 온도 차를 보입니다. 이에 신청인의 가입 주소지와 사업장 소재지에 최적화된 지역별 맞춤 전략이 수립되어야 합니다.</p>
+
+        <h3>지역별 사법 행정의 세부적 경향성</h3>
+        <ul>
+            <li><strong>서울 개인회생 (서울회생법원):</strong> 전국에서 가장 도산 처리가 원활하고 진취적이며, 20대 청년이나 급격한 가상자산 실패 채무자에 대해서도 투자 손실금을 자산 가치에 강제 배정하지 않도록 실무 준칙을 적용하여 변제 부담을 덜어주는 흐름이 뚜렷합니다.</li>
+            <li><strong>경기 개인회생 및 인천 개인회생 (수원회생법원, 인천지방법원, 고양, 용인, 안산, 성남, 남양주):</strong> 경기도 전역과 인접 인천 지역은 소외 계층 지원에 집중하고 있으나 위장 이직이나 직장 명의 허위 등록 등 급여 불투명성에 대해 대단히 엄중한 보정 명령을 내려 사실 확인 절차를 혹독하게 진행하는 성향이 짙습니다.</li>
+            <li><strong>영남권 (부산 개인회생, 대구 개인회생, 울산 개인회생, 창원 개인회생):</strong> 부산회생법원 개원 이래 진행 일정이 비약적으로 신속해졌으나, 대구와 울산 등 일반 지방법원 본원 행정망은 통상적으로 가구별 재산 평가와 배우자명의 예금 자산의 부부 공동 분배 비중 평가 수준이 타 권역에 비해 완고하게 적용되는 편입니다.</li>
+            <li><strong>충청 및 호남, 제주 (대전 개인회생, 광주 개인회생, 청주 개인회생, 전주 개인회생, 천안 개인회생, 세종 개인회생, 제주 개인회생):</strong> 전통적 지역 채무 구조에 근거하여 자영업을 영위하는 영세 소상공인의 신청 비중이 잦으며, 매출 누락 여부 규명과 사업용 감가상각 부채 장부를 교차 검증하는 과정에 집중된 심층 자격 조사를 보편적으로 지향합니다.</li>
+        </ul>
+
+        <h3>연령 그룹군별 성공 인가 핵심 포인트</h3>
+        <ul>
+            <li><strong>20대 개인회생 및 청년 개인회생:</strong> 사회 초년생으로서 진입기에 축적한 자산이 부재하나 청년 채무는 주로 모바일 비대면 고금리 신용 대출에서 발생합니다. 법원은 이들의 회생을 장려하고자 성실성 증명이 뒷받침될 시 인가율을 무난하게 견인해 줍니다.</li>
+            <li><strong>30대 개인회생 및 40대 개인회생:</strong> 자녀 양육의 책무와 가구 구성원 소득 합산액, 중형 규모의 거주지 임대차 주택 전세 담보 대출 채무가 혼재합니다. 직무 가치에 따른 본인의 급여 증명을 안정적으로 설계하고 추가 공과금 및 사교육 실비를 다각적으로 반영받아 생계 유지를 달성하는 협상이 최고 관건입니다.</li>
+            <li><strong>50대 개인회생 및 60대 개인회생 이상 고령자 개인회생:</strong> 고령층으로 이행하는 단계이며 지병으로 인한 생산성 하락과 갑작스러운 부채 전가가 요인입니다. 퇴직 후 비정기 아르바이트나 정부 보조금 수급 실적을 소득의 토대로 조율하여 고령자 기준 소명서를 충실하게 소명해야 장기 채무 불이행 위험에서 탈출할 수 있습니다.</li>
+        </ul>
+
+        <h2 id="calculator-section" class="interactive-section">7. 실시간 예상 변제금 계산기 (2026년 가구원수 기준 수식 내장)</h2>
+        <p>귀하의 월 수입과 전체 부채액, 부양 의무가 필요한 가구원 수를 하단에 정확히 입력해 주십시오. 2026년 기준 중위소득 60퍼센트 기본 최저생계비를 자동 연산하여 대략적으로 도출되는 매달의 예상 납입금과 기대 탕감 총액을 대리인 선임 이전에 직관적으로 산출해 드립니다.</p>
+
+        <div class="input-group">
+            <label for="calcIncome">월 실제 세후 실수령 소득 (원 단위로 숫자만 입력):</label>
+            <input type="number" id="calcIncome" value="2500000" placeholder="예: 2500000">
+        </div>
+        <div class="input-group">
+            <label for="calcFamily">부양가족 가구원수 (본인 포함 가입 신청 가구원 수):</label>
+            <select id="calcFamily">
+                <option value="1">1인 가구 (본인 단독)</option>
+                <option value="2">2인 가구 (본인 + 미성년 자녀 등 1인)</option>
+                <option value="3">3인 가구 (본인 + 부양가족 2인)</option>
+                <option value="4">4인 가구 (본인 + 부양가족 3인)</option>
+                <option value="5">5인 가구 (본인 + 부양가족 4인)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="calcTotalDebt">현재 누적된 총 금융 채무액 (원 단위로 숫자만 입력):</label>
+            <input type="number" id="calcTotalDebt" value="60000000" placeholder="예: 60000000">
+        </div>
+
+        <button onclick="runRehabCalc()" style="width: 100%; padding: 15px; background: var(--secondary-color); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s;">월 예상 변제금 정밀 산출하기</button>
+
+        <div id="rehabCalcResult" class="calc-result-box" style="display: none;">
+            <p>2026년 기준 공제되는 최저생계비: <span id="resLivingCost">0</span> 원</p>
+            <p>매월 납부 예상 가용 변제금: <span id="resMonthlyPayment">0</span> 원</p>
+            <p>표준 변제 기간 (36개월) 기준 총상환액: <span id="resTotalPayment">0</span> 원</p>
+            <p>기대 채무 면책 탕감액: <span id="resForgivenAmount">0</span> 원</p>
+            <p>총 부채 대비 예상 탕감 비율: <span id="resForgivenPercent">0</span> %</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 15px; border-top: 1px dashed var(--border-color); padding-top: 10px;">
+                * 해당 결과는 재산 가치 평가에 따른 청산가치 보장의 원칙과 법원의 추가 보정 과정이 적용되지 않은 자가 진산 수치이므로, 실제 사건 배정 시에는 차이가 발생할 수 있습니다.
+            </p>
+        </div>
+
+        <script>
+            function runRehabCalc() {
+                const income = parseFloat(document.getElementById('calcIncome').value) || 0;
+                const familySize = parseInt(document.getElementById('calcFamily').value) || 1;
+                const totalDebt = parseFloat(document.getElementById('calcTotalDebt').value) || 0;
+                
+                // 2026년 가구원수별 최저생계비
+                const livingCosts = {
+                    1: 1538543,
+                    2: 2520105,
+                    3: 3211916,
+                    4: 3906688,
+                    5: 4534031
+                };
+                
+                const currentLivingCost = livingCosts[familySize];
+                let monthlyPayment = income - currentLivingCost;
+                
+                const resultDiv = document.getElementById('rehabCalcResult');
+                resultDiv.style.display = 'block';
+                
+                document.getElementById('resLivingCost').innerText = Math.round(currentLivingCost).toLocaleString();
+                
+                if (monthlyPayment <= 0) {
+                    document.getElementById('resMonthlyPayment').innerText = "0 (진행 곤란)";
+                    document.getElementById('resTotalPayment').innerText = "0";
+                    document.getElementById('resForgivenAmount').innerText = "산출 불가";
+                    document.getElementById('resForgivenPercent').innerText = "0";
+                    alert("주의: 현재 월 소득이 선택하신 가구원수별 최저생계비보다 적어 신청이 어려울 수 있습니다. 가구원 조정을 검토하시거나 부양가족 제외, 혹은 소득 향상 전략 마련이 선행되어야 합니다.");
+                    return;
+                }
+                
+                const total36Months = monthlyPayment * 36;
+                let forgiven = totalDebt - total36Months;
+                if (forgiven < 0) forgiven = 0;
+                const percentage = (forgiven / totalDebt) * 100;
+                
+                document.getElementById('resMonthlyPayment').innerText = Math.round(monthlyPayment).toLocaleString();
+                document.getElementById('resTotalPayment').innerText = Math.round(total36Months).toLocaleString();
+                document.getElementById('resForgivenAmount').innerText = Math.round(forgiven).toLocaleString();
+                document.getElementById('resForgivenPercent').innerText = percentage.toFixed(1);
+            }
+        </script>
+
+        <h2 id="cost-estimator-section">8. 예상 진행 비용 및 법원 공과금 예산 산정</h2>
+        <p>신청 단계에서 수반되는 순수 법원 공과금과 대리인 비용의 세부 명세입니다. 인지대와 송달료는 채권자의 숫자에 연계되어 정량 비례하는 구조이므로, 이를 직접 점검해 봄으로써 대략의 비용적 틀을 견적내 볼 수 있습니다.</p>
+
+        <div class="interactive-section">
+            <h3>법원 송달료 및 대리 수임 가격 자동 모의 견적</h3>
+            <div class="input-group">
+                <label for="creditorCount">채권 금융기관 수 (금융사, 보증인, 카드사 총합):</label>
+                <input type="number" id="creditorCount" value="5" min="1" max="50">
+            </div>
+            <button onclick="estimateCosts()" style="padding: 12px 24px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;">진행 예산 계산해보기</button>
+            
+            <div id="costEstimateResult" class="calc-result-box" style="display: none;">
+                <p>기본 인지세 (정액 수수료): <span>30,000</span> 원</p>
+                <p>예상 예납 송달료 (채권자 수 비례): <span id="estDelivery">0</span> 원</p>
+                <p>대리인 평균 표준 컨설팅 수임료: <span id="estAttorney">0</span> 원</p>
+                <p>총 예상 법률 부대비용 합계: <span id="estTotal">0</span> 원</p>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; border-top: 1px dashed var(--border-color); padding-top: 10px;">
+                    * 송달료 기본 산식: 기본 10회송분 더하기 채권자 수당 8회송분 기준 적용. 수임료는 사무소별 분할 수수 및 신규 조건 지원에 따라 차이가 있습니다.
+                </p>
+            </div>
+        </div>
+
+        <script>
+            function estimateCosts() {
+                const creditors = parseInt(document.getElementById('creditorCount').value) || 1;
+                const resultBox = document.getElementById('costEstimateResult');
+                resultBox.style.display = 'block';
+                
+                // 2026년 1회 송달료 기준액 약 5,200원 가정
+                const deliveryFeeUnit = 5200;
+                const totalDelivery = (10 * deliveryFeeUnit) + (creditors * 8 * deliveryFeeUnit);
+                
+                // 일반 도산 대리인 수임료 추산 (기본 130만원 + 채권자당 10만원 가산)
+                const baseAttorney = 1300000;
+                const totalAttorney = baseAttorney + (creditors * 100000);
+                
+                const totalSum = 30000 + totalDelivery + totalAttorney;
+                
+                document.getElementById('estDelivery').innerText = Math.round(totalDelivery).toLocaleString();
+                document.getElementById('estAttorney').innerText = Math.round(totalAttorney).toLocaleString();
+                document.getElementById('estTotal').innerText = Math.round(totalSum).toLocaleString();
+            }
+        </script>
+
+        <h2 id="reference">9. 신뢰성 확보 및 공인된 외부 참고 기관 안내</h2>
+        <p>본 안내서의 사실 관계 검증 및 객관적 신뢰성 향상을 위하여 도산 실무의 중추를 맡고 있는 사법 및 유관 법률 기구의 공식 지침과 관계 법령을 참조했습니다. 아래 유관 웹사이트를 방문하시면 가구 소득 표준 인상 공문과 사법 통계 지표를 가장 정밀하게 탐독하실 수 있습니다.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;">
+            <a href="https://legal.reliabledone.com/individual-rehabilitation-2026" target="_blank" class="external-link">reliabledone 공식 도산 법률 지원 센터 - 2026년 최저생계비 개정 시행규칙 전문 수록</a>
+            <a href="https://namu.wiki/w/%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D" target="_blank" class="external-link">나무위키 - 개인회생 개론 및 역사적 채무조정제도 변천사 요약</a>
+            <a href="https://help.scourt.go.kr" target="_blank" class="external-link">대한민국 법원 대법원 전자민원센터 - 개별 관할 주소지 확인 및 전자소송 양식 내려받기</a>
+            <a href="https://www.mohw.go.kr" target="_blank" class="external-link">보건복지부 공식 홈페이지 - 2026년도 기준 중위소득 및 기초수급 가구 생계 보장 기준 고시처</a>
+            <a href="https://www.law.go.kr" target="_blank" class="external-link">법제처 국가법령정보센터 - 채무자 회생 및 파산에 관한 법률 최신 조문 수록</a>
+            <a href="https://slb.scourt.go.kr" target="_blank" class="external-link">서울회생법원 홈페이지 - 서울 권역 채무 조정을 위한 단독 특무 실무 준칙 안내</a>
+        </div>
+
+        <hr style="border: 0; height: 1px; background: var(--border-color); margin: 40px 0;">
+
+        <div style="text-align: center;">
+            <h2 style="border: none; padding: 0; margin-top: 0; text-align: center;">지속되는 빚 독촉과 압류 걱정, 체계적인 법률 조력으로 시작하십시오</h2>
+            <p style="color: var(--text-muted); max-width: 700px; margin: 15px auto 30px auto;">개인의 과도한 부채는 결코 스스로 포기해야 할 종착역이 아닙니다. 엄정한 2026년 기준 중위소득 표준을 면밀하게 적용받아 삶의 정상 궤도로 안전하게 귀환하십시오. 전국 어디서나 간편하게 비대면 비공개로 맞춤형 해결 방안을 모색하실 수 있습니다.</p>
+            <a href="https://legal.reliabledone.com/consulting-rehab" class="cta-button">비대면 1대1 무료 안심 맞춤 채무 진단 상담 신청하기</a>
+        </div>
+
+        <div class="reference-section" style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+            <p>본 상세 안내 콘텐츠는 법원 도산 선고 지침과 2026년 보건복지 고시 자료를 객관적으로 검토하여 편제되었습니다. 채무 청산 대상자의 구체적 자산 구성 상태 및 부양 범위에 따라 면책률 및 변제 가치 비율은 차이를 보일 수 있습니다.</p>
+        </div>
+    </div>
+  
